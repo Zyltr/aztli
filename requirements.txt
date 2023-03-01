@@ -1,0 +1,5 @@
+django
+environs[django]
+gunicorn
+psycopg2
+whitenoise[brotli]

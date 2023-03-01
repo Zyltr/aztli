@@ -1,0 +1,22 @@
+services:
+
+  database:
+    image: postgres:15
+    env_file:
+      - ./.postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  web:
+    build: .
+    command: python manage.py runserver --nostatic 0.0.0.0:8000
+    depends_on:
+      - database
+    ports:
+      - 8000:8000
+    volumes:
+      - ./configuration:/project/configuration
+
+volumes:
+  postgres:
+    name: aztli-postgres
